@@ -29,8 +29,6 @@ const App: React.FC = () => {
 
 	const [undo, setUndo] = useState<Points[]>([]);
 
-	const [redo, setRedo] = useState<Points[]>([]);
-
 	const updatePoint = (x: number, y: number, color: number) => {
 		const indice = points.findIndex(
 			find => find.x === x && find.y === y && find.color === color,
@@ -56,7 +54,6 @@ const App: React.FC = () => {
 		if (algum.length > 0) {
 			updatePoint(algum[0].x, algum[0].y, algum[0].color);
 		} else {
-			setRedo([]);
 			setUndo([]);
 
 			setPoints(prevState => [...prevState, { x, y, color: 0 }]);
@@ -64,7 +61,6 @@ const App: React.FC = () => {
 	};
 
 	const handleRedo = () => {
-		const newArray = points;
 		const newArrayUndo = undo;
 
 		const item = newArrayUndo.shift();
